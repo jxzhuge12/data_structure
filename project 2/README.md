@@ -17,18 +17,3 @@ Output
 Output to the standard output. For each test case, you are supposed to count those family members who have no child for every seniority level starting from the root. The numbers must be printed in a line, separated by a space, and there must be no extra space at the end of each line.
 
 For example, the first sample case represents a tree with only 2 nodes, where 01 is the root and 02 is its only child. Hence on the root 01 level, there is 0 leaf node; and on the next level, there is 1 leaf node. Then we should output "0 1" in a line.
-
-Sample Input
-2 1
-01 1 02
-1 0
-7 4
-01 2 02 03
-06 1 07
-02 2 04 05
-03 1 06
-0 0
-Sample Output
-0 1
-1
-0 0 2 1
