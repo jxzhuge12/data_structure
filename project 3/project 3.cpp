@@ -1,3 +1,4 @@
+#pragma warning(disable:4996)
 #include<stdio.h>
 
 void genergo();
@@ -7,18 +8,20 @@ void merge(int* costall);
 int N, M;
 int citytemp[1001][1001];//生成citytemp
 int go[1001];
+int temp[1001][1001];
+int costall[1001];//生成costall，来存储删除第i个节点后，需要costall[i]的损失
+int highway[1001][1001];
 
 int main(void){
 	int i, j, k, q;
 	scanf("%d", &N);//输入N
 	do{
-		int highway[1001][1001];
 		for (i = 1; i <= N; i++){
 			for (j = 1; j <= N; j++){
 				highway[i][j] = -1;
 			}
 		}//给highway中所有数据赋初值-1
-		int costall[1001];//生成costall，来存储删除第i个节点后，需要costall[i]的损失
+
 		int statue, cost;
 		int city1, city2;
 		scanf("%d", &M);
@@ -123,24 +126,23 @@ int header(int posit){
 }
 
 void merge(int* costall){
-	int i, j, k;
+	int i, j, k, l;
 	*costall = 0;
 	int num = 0;
 	for (i = 1; i < N; i++){
 		if (go[i] < 0)
 			num++;
 	}
-	int temp[1001][1001];
-	for (i = 1; i < N; i++){
-		for (j = 1; j < i; j++){
-			temp[i][j] = -1;
-			if (go[header(j)] != go[header(i)]){
-				temp[i][j] = citytemp[i][j];
+	for (l = 1; l < num; l++){
+		int min = 0;
+		for (i = 1; i < N; i++){
+			for (j = 1; j < i; j++){
+				temp[i][j] = -1;
+				if (go[header(j)] != go[header(i)]){
+					temp[i][j] = citytemp[i][j];
+				}
 			}
 		}
-	}
-	int min = 0;
-	for (i = 1; i < num; i++){
 		int temp2 = 0;
 		for (j = 1; j < N; j++){
 			for (k = 1; k < j; k++){
@@ -163,6 +165,8 @@ void merge(int* costall){
 				if (temp[j][k] == min){
 					temp[j][k] = -1;
 					temp3++;
+					go[header(j)] = go[header(j)] + go[header(k)];
+					go[header(k)] = header(j);
 					break;
 				}
 			}

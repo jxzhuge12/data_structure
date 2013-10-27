@@ -23,9 +23,3 @@ Output
 For each test case, output to the standard output. Just print in a line the city we must protest the most, that is, it will take us the maximum effort to rebuild the connection if that city is conquered by the enemy.
 
 In case there is more than one city to be printed, output them in increasing order of the city numbers, separated by one space, but no extra space at the end of the line. In case there is no need to repair any highway at all, simply output 0.
-
-PS: 
-
-程序在我的电脑配置上不能运行，大概是 visual studio 2013 RC 认为占用太多空间，所以终止程序运行。但是程序能够成功上传并通过。
-
-尝试过用 malloc 代替程序上限，但是会出现堆栈过多，导致溢出的情况。
